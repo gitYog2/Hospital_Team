@@ -13,22 +13,22 @@ public class UserDao
 	@Autowired
    private UserRepository repo;
 	
-	public User save(User user)
+	public User saveUser(User user)
 	{
 		return repo.save(user);
 	}
 	
-	public User update(User user)
+	public User updateUser(User user)
 	{
 		return repo.save(user);
 	}
 	
-	public void deleteById(int id)
+	public void deleteUserById(int id)
 	{
 		repo.deleteById(id);
 	}
 	
-	public Optional<User> findById(int id)
+	public Optional<User> findUserById(int id)
 	{
 		return repo.findById(id);
 	}
@@ -36,5 +36,8 @@ public class UserDao
 	public List<User> findAllUsers()
 	{
 		return repo.findAll();
+	}
+	public User verifyUser(long phone,String password) {
+		return repo.verifyUser(phone, password);
 	}
 }
