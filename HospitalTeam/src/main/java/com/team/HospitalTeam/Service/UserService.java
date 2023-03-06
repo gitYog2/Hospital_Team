@@ -21,7 +21,7 @@ public class UserService {
 	UserDao dao;
 	
 	public ResponseEntity<ResponseStructure<User>> saveUser(@RequestBody User user){
-		ResponseStructure<User> structure=new ResponseStructure<>();
+		ResponseStructure<User> structure=new ResponseStructure<User>();
 		structure.setMessage("User Added Successfully.!!!");
 		structure.setCode(HttpStatus.ACCEPTED.value());
 		structure.setBody(dao.saveUser(user));
@@ -31,7 +31,7 @@ public class UserService {
 	
 	
 	public ResponseEntity<ResponseStructure<User>> updateUser(@RequestBody User user){
-		ResponseStructure<User> structure=new ResponseStructure<>();
+		ResponseStructure<User> structure=new ResponseStructure<User>();
 		structure.setMessage("User Updated Successfully.!!!");
 		structure.setCode(HttpStatus.ACCEPTED.value());
 		structure.setBody(dao.updateUser(user));
@@ -42,7 +42,7 @@ public class UserService {
 	
 	public ResponseEntity<ResponseStructure<String>> deleteUserById(@PathVariable int id){
 		Optional<User> recUser=dao.findUserById(id);
-		ResponseStructure<String> structure=new ResponseStructure<>();
+		ResponseStructure<String> structure=new ResponseStructure<String>();
 		dao.deleteUserById(id);
 		if(recUser.isPresent()) {
 			structure.setMessage("User Found & Deletet Successfully");
@@ -60,7 +60,7 @@ public class UserService {
 	
 	public ResponseEntity<ResponseStructure<User>> findUserById(@PathVariable int id){
 		Optional<User> recUser=dao.findUserById(id);
-		ResponseStructure<User> structure=new ResponseStructure<>();
+		ResponseStructure<User> structure=new ResponseStructure<User>();
 		
 		if(recUser.isPresent()) {
 			structure.setMessage("User Found Successfully.!!!");
@@ -79,7 +79,7 @@ public class UserService {
 	
 	
 	public ResponseEntity<ResponseStructure<List<User>>> findAllUser(){
-		ResponseStructure<List<User>> structure=new ResponseStructure<>();
+		ResponseStructure<List<User>> structure=new ResponseStructure<List<User>>();
 		structure.setMessage("Found All Users & Are Printed Below Successfully.!!!");
 		structure.setCode(HttpStatus.FOUND.value());
 		structure.setBody(dao.findAllUsers());
@@ -87,7 +87,7 @@ public class UserService {
 	}
 	
 	public ResponseEntity<ResponseStructure<User>> verifyUser(@RequestParam long phone, @RequestParam String password){
-		ResponseStructure<User> structure=new ResponseStructure<>();
+		ResponseStructure<User> structure=new ResponseStructure<User>();
 		User recUser=dao.verifyUser(phone, password);
 		if(recUser!=null) {
 			structure.setMessage("User Verified Successfully..!!!");
