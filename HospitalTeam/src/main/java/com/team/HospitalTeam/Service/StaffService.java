@@ -70,12 +70,12 @@ public class StaffService {
 		return new ResponseEntity<ResponseStructure<Staff>>(structure,HttpStatus.NOT_FOUND);
 	}
 	
-	public ResponseEntity<ResponseStructure<Staff>> findAllStaff() {
+	public ResponseEntity<ResponseStructure<List<Staff>>> findAllStaff() {
 		ResponseStructure<List<Staff>> structure=new ResponseStructure<List<Staff>>();
 		structure.setMessage("The List Is Displayed Successfully!!!");
 		structure.setCode(HttpStatus.FOUND.value());
 		structure.setBody(dao.findAllStaff());
-		return new ResponseEntity<ResponseStructure<Staff>>(HttpStatus.FOUND);
+		return new ResponseEntity<ResponseStructure<List<Staff>>>(HttpStatus.FOUND);
 	}
 	
 	
