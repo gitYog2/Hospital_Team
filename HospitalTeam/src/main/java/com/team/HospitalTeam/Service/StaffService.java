@@ -1,6 +1,5 @@
 package com.team.HospitalTeam.Service;
 
-import java.sql.Struct;
 import java.util.List;
 import java.util.Optional;
 
@@ -81,7 +80,22 @@ public class StaffService {
 	
 	
 	
-	
+	public ResponseEntity<ResponseStructure<Staff>> verifyStaff(long phone ,String password){
+		ResponseStructure<Staff> structure=new ResponseStructure<Staff>();
+		Staff recStaff=dao.verifyStaff(phone, password);
+		if(recStaff!=null) {
+		structure.setMessage("Verification Successfull");
+		structure.setCode(HttpStatus.FOUND.value());
+		structure.setBody(recStaff);
+		return new ResponseEntity<ResponseStructure<Staff>>(structure,HttpStatus.FOUND);
+		}
+		else {
+			structure.setMessage("Invalid Phone number or Password");
+			structure.setCode(HttpStatus.NOT_FOUND.value());
+			structure.setBody(null);
+		}
+		return new ResponseEntity<ResponseStructure<Staff>>(structure,HttpStatus.NOT_FOUND);
+	}
 	
 	
 	
