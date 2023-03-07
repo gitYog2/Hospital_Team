@@ -1,6 +1,7 @@
 package com.team.HospitalTeam.Service;
 
 import java.sql.Struct;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,50 @@ public class StaffService {
 		structure.setCode(HttpStatus.ACCEPTED.value());
 		return new ResponseEntity<ResponseStructure<Staff>>(structure,HttpStatus.ACCEPTED);
 	}
+	
+	public ResponseEntity<ResponseStructure<String>> deleteStaffById(int id){
+		ResponseStructure<String> structure=new ResponseStructure<String>();
+		Optional<Staff> recStaff=dao.findStaffById(id);
+		if(recStaff.isPresent()) {
+			structure.setMessage("Staff Found & Deleted Successfully");
+			structure.setCode(HttpStatus.FOUND.value());
+			structure.setBody("Staff Found");
+			return new ResponseEntity<ResponseStructure<String>>(structure,HttpStatus.FOUND);
+		}
+		else {
+			structure.setMessage("Unable To Delete Staff Who Is Not Present");
+			structure.setCode(HttpStatus.NOT_FOUND.value());
+			structure.setBody("Staff Not Found");
+		}
+		return new ResponseEntity<ResponseStructure<String>>(structure,HttpStatus.NOT_FOUND);
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
