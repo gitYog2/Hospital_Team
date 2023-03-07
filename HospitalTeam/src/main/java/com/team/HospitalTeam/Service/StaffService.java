@@ -1,6 +1,7 @@
 package com.team.HospitalTeam.Service;
 
 import java.sql.Struct;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,9 +53,31 @@ public class StaffService {
 
 	}
 	
+	public ResponseEntity<ResponseStructure<Staff>> findStaffById(int id){
+		ResponseStructure<Staff> structure=new ResponseStructure<Staff>();
+		Optional<Staff> recStaff=dao.findStaffById(id);
+		if(recStaff.isPresent()) {
+		structure.setMessage("Staff Found Successfully!!!");
+		structure.setCode(HttpStatus.FOUND.value());
+		structure.setBody(recStaff.get());
+		return new ResponseEntity<ResponseStructure<Staff>>(structure,HttpStatus.FOUND);
+
+		}
+		else {
+		structure.setMessage("Staff Found Successfully!!!");
+		structure.setCode(HttpStatus.FOUND.value());
+		structure.setBody(null);
+		}
+		return new ResponseEntity<ResponseStructure<Staff>>(structure,HttpStatus.NOT_FOUND);
+	}
 	
-	
-	
+	public ResponseEntity<ResponseStructure<Staff>> findAllStaff() {
+		ResponseStructure<List<Staff>> structure=new ResponseStructure<List<Staff>>();
+		structure.setMessage("The List Is Displayed Successfully!!!");
+		structure.setCode(HttpStatus.FOUND.value());
+		structure.setBody(dao.findAllStaff());
+		return new ResponseEntity<ResponseStructure<Staff>>(HttpStatus.FOUND);
+	}
 	
 	
 	
