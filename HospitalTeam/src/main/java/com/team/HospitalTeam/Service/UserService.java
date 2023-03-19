@@ -25,6 +25,7 @@ public class UserService {
 		structure.setMessage("User Added Successfully.!!!");
 		structure.setCode(HttpStatus.ACCEPTED.value());
 		structure.setBody(dao.saveUser(user));
+		
 		return new ResponseEntity<ResponseStructure<User>>(structure,HttpStatus.ACCEPTED);
 	}
 	
@@ -83,6 +84,7 @@ public class UserService {
 		structure.setMessage("Found All Users & Are Printed Below Successfully.!!!");
 		structure.setCode(HttpStatus.FOUND.value());
 		structure.setBody(dao.findAllUsers());
+		
 		return new ResponseEntity<ResponseStructure<List<User>>>(structure,HttpStatus.FOUND);
 	}
 	
