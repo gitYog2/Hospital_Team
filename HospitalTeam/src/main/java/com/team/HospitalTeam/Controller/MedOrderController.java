@@ -44,22 +44,4 @@ public class MedOrderController {
 		return service.findAllMedOrders();
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
